@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Fleet Commander
+    </title>
+    <meta content='text/html; charset=UTF8' http-equiv='content-type'>
+    <meta content='Manage your large GNOME deployments with ese.' name='description'>
+    <meta content='fleet,commander,fleetcommander' name='keywords'>
+    <meta content='width=device-width,initial-scale=1' name='viewport'>
+    <link href='img/favicon.png' rel='icon' type='image/png'>
+    <link href='/favicon.ico' rel='shortcut icon' type='image/x-icon'>
+    <link href='img/favicon57.png' rel='apple-touch-icon' sizes='57x57'>
+    <link href='img/favicon152.png' rel='apple-touch-icon' sizes='152x152'>
+    <link href="stylesheets/fonts-6c582ae6.css" rel="stylesheet" />
+    <link href="stylesheets/site-a052e32d.css" rel="stylesheet" />
+    <link href="stylesheets/animate-0a10c6dd.css" rel="stylesheet" />
+  </head>
+  <body id='page-top'>
+    <nav class='navbar navbar-default navbar-fixed-top' id='mainNav'>
+      <div class='container-fluid'>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class='navbar-header'>
+          <button class='navbar-toggle collapsed' data-target='#bs-example-navbar-collapse-1' data-toggle='collapse' type='button'>
+            <span class='sr-only'>Toggle navigation</span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </button>
+          <a class="navbar-brand page-scroll" href="#page-top">Fleet Commander</a>
+        </div>
+        <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+          <ul class='nav navbar-nav navbar-right'>
+            <li>
+              <a class="page-scroll" href="#about">About</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#getting">Getting Fleet Commander</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#get-involved">Get&nbsp;Involved</a>
+            </li>
+          </ul>
+          <!-- /.navbar-collapse -->
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </body>
+  <header>
+    <div class='header-content'>
+      <div class='header-content-inner'>
+        <h1>manage your large deployments with ease</h1>
+        <hr>
+          <p>Easily clone a template of a machine across your whole network and keep it up to date.</p>
+          <a class='btn btn-primary btn-xl page-scroll' href='#about'>Find Out How</a>
+        </hr>
+      </div>
+    </div>
+  </header>
+  <section class='bg-primary' id='about'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-lg-8 col-lg-offset-2 text-center'>
+          <h2 class='section-heading'>Fleet Commander is a toolchain for defining and deploying a common OS base</h2>
+          <hr class='light'>
+            <p class='text-faded'>FIXME: Explain the workfow for Fleet Commander and the tools to achieve its goal.</p>
+            <p>&nbsp;</p>
+          </hr>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id='getting'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-lg-10 col-lg-offset-1'>
+          <h1 class='section-heading text-center'>Getting Fleet Commander</h1>
+          <hr class='primary'>
+          <p>
+            Fleet Commander consists on two components:
+          </p>
+          <ul>
+            <li>a web service integrated with Apache that serves the dynamic application and the profile data to the network.</li>
+            <li>and a client side daemon that runs on every host of the network.</li>
+          </ul>
+          <p>
+            Fleet Commander relies on libvirt and KVM to generate the profile data
+            dinamically from a template VM running the same environment as the rest of the
+            network.
+          </p>
+          <h2>Setup</h2>
+          <p>
+            These are the instructions to build and install the admin interface:
+          </p>
+          <pre>&#x000A;  <span class="unselectable">$ </span>./configure --prefix=$PREFIX # where $PREFIX can be /usr or /usr/local&#x000A;  <span class="unselectable">$ </span>make&#x000A;  <span class="unselectable">$ </span>make install&#x000A;</pre>&#x000A;
+          <p>
+            You must also create a fleet-commander-admin user and grant it privileges to
+            <code>/var/lib/fleet-commander-admin</code>
+            and
+            <code>/var/lib/fleet-commander-admin/profiles</code>
+          </p>
+          <p>
+            These are the instructions to install the logger and enable a VM as a Fleet Commander template:
+          </p>
+          <pre>&#x000A;  <span class="unselectable">$ </span>./configure --prefix=/usr&#x000A;  <span class="unselectable">$ </span>make&#x000A;  <span class="unselectable">$ </span>cd logger&#x000A;  <span class="unselectable">$ </span>make install&#x000A;  <span class="unselectable">$ </span>cd ../data/&#x000A;  <span class="unselectable">$ </span>make install&#x000A;</pre>
+          <p>
+            The install prefix must be set to /usr so that the fleet-commander-logger.desktop file makes it
+            to the /etc/xdg/autostart directory.
+          </p>
+          <h2>Note on the Logger</h2>
+          <p>
+            The logger autostarts on a desktop session only when a special device shows up in
+            <code>/dev/virtio-ports</code>
+          </p>
+          <h2>Running the Admin Interface</h2>
+          <p>
+            You must first enable the apache configuration, in Fedora systems you must do
+            the following as root (assuming you installed it in
+            <code>--prefix=/usr</code>):
+          </p>
+          <pre>&#x000A;  <span class="unselectable">$ </span>ln -s /etc/xdg/fleet-commander-apache.conf /etc/httpd/conf.d&#x000A;  <span class="unselectable">$ </span>systemctl restart httpd&#x000A;</pre>
+          <p>
+            And the service must be available as a virtual host in apache, point your
+            browser to it and follow the instructions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id='get-involved'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-lg-10 col-lg-offset-1'>
+          <h1 class='section-heading text-center'>Get Involved</h1>
+          <hr class='primary'>
+          <p>
+            Fleet Commander is Free Software and is developed in the open. To get in touch, use the
+            <a href="http://fixme.com">fleet commander mailing list</a>
+            or
+            <em>#fleetcommander</em>
+            IRC channel on Freenode. Code can be found on
+            <a href="https://github.com/fleet-commander">Github</a>
+            (along with a
+            <a href="http://fixme.com">wiki</a>)
+            and issues are tracked on
+            <a href="https://github.com/fleet-commander/fc-admin/issues">Github Issues</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class='bg-black' id='footer'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-lg-3 col-lg-offset-1'>
+          <a class='navbar-brand page-scroll' href='#page-top'>
+            <img title="Flatpak" class="full" src="img/logo-0d69f283.svg" />
+          </a>
+        </div>
+        <ul class='col-lg-7'>
+          <li class='toplevel'>
+            <a href="./">Home</a>
+          </li>
+          <li class='toplevel'>
+            <!-- id links on index page -->
+            <a class="page-scroll" href="#about">About</a>
+          </li>
+          <li class='toplevel'>
+            <!-- id links on index page -->
+            <a class="page-scroll" href="#getting">Getting Fleet Commander</a>
+          </li>
+          <li class='toplevel'>
+            <!-- id links on index page -->
+            <a class="page-scroll" href="#get-involved">Get&nbsp;Involved</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <script src="javascripts/jquery-1797d73e.js"></script>
+  <script src="javascripts/jquery.easing.min-603599b4.js"></script>
+  <script src="javascripts/jquery.toc.min-265bae56.js"></script>
+  <script src="javascripts/bootstrap-8cf4186c.js"></script>
+  <script src="javascripts/all-3265ae7f.js"></script>
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-68811788-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+</html>
