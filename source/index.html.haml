@@ -4,19 +4,86 @@ description: Manage your large GNOME deployments with ese.
 ---
 %header
   .header-content
+    .container
+    .row
+      .col-lg-6.col-lg-offset-3.text-center
+        =partial "animated-logo.svg"
+        :css
+          #button {
+            transform: scale(0);
+            transform-origin: center;
+            animation-name: buttonbounce;
+            animation-duration: 500ms;
+            animation-iteration-count:1;
+            animation-direction: normal;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+          }
+          #paper1 {
+            transform: matrix(1.5512631,0.25736117,-0.25351951,1.5586445,-246.33338,-1025.6786);
+            animation-name: paper1reveal;
+            animation-delay: 1300ms;
+            animation-duration: 1s;
+            animation-iteration-count:1;
+            animation-direction: normal;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+          }
+          #paper2 {
+            transform: matrix(0.54321482,0.09293994,-0.13426739,0.56286784,-66.925292,-58.862265);
+            animation-name: paper2reveal;
+            animation-delay: 800ms;
+            animation-duration: 1s;
+            animation-iteration-count:1;
+            animation-direction: normal;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+          }
+          #paper3 {
+            transform: matrix(0.89169925,0.14481415,-0.04922749,0.8770312,-151.12169,-287.55846);
+            animation-name: paper3reveal;
+            animation-delay: 1000ms;
+            animation-duration: 1s;
+            animation-iteration-count:1;
+            animation-direction: normal;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+          }
+          @keyframes buttonbounce {
+            0% {transform: scale(0);}
+            70% {transform: scale(1.3);}
+            100% {transform: scale(1);}
+          }
+          @keyframes paper1reveal {
+            0% {transform: matrix(1.5512631,0.25736117,-0.25351951,1.5586445,-246.33338,-1025.6786);}
+            100% {transform: matrix(1.5512631,0.25736117,-0.25351951,1.5586445,18.831665,-1242.0533);}
+          }
+          @keyframes paper2reveal {
+            0% {transform: matrix(0.54321482,0.09293994,-0.13426739,0.56286784,-66.925292,-58.862265);}
+            100% {transform: matrix(0.54321482,0.09293994,-0.13426739,0.56286784,275.31439,-354.4329);}
+          }
+          @keyframes paper3reveal {
+            0% {transform: matrix(0.89169925,0.14481415,-0.04922749,0.8770312,-151.12169,-287.55846);}
+            100% {transform: matrix(0.89169925,0.14481415,-0.04922749,0.8770312,108.3865,-519.48948);}
+          }
     .header-content-inner
       %h1 manage your large deployments with ease
       %hr
         %p Easily clone a template of a machine across your whole network and keep it up to date.
         %a.btn.btn-primary.btn-xl.page-scroll{:href => "#about"} Find Out How
+        
 %section#about.bg-primary
   .container
     .row
       .col-lg-8.col-lg-offset-2.text-center
         %h2.section-heading Fleet Commander is a toolchain for defining and deploying a common OS base
         %hr.light
-          %p.text-faded FIXME: Explain the workfow for Fleet Commander and the tools to achieve its goal.
-          %p &nbsp;
+    .row
+      .col-lg-12.text-center
+        =partial "workflow.svg"
+
+        %p.text-faded By using a virtual machine, the admin can fine tune an image of the OS in real time and get an overview of the changes he made at the end of the process. After a review, those changes can be pushed to the common profile.
+        %p &nbsp;
 
 %section#getting
   .container
@@ -102,7 +169,7 @@ description: Manage your large GNOME deployments with ese.
           =link_to "Github", "https://github.com/fleet-commander"
           (along with a 
           = succeed ")" do
-            = link_to "wiki", "http://fixme.com"
+            = link_to "wiki", "https://wiki.gnome.org/Projects/FleetCommander"
           and issues are tracked on 
           = succeed "." do
             = link_to "Github Issues", "https://github.com/fleet-commander/fc-admin/issues"
